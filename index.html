@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <title>Results Summary Component</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light-red: hsl(0, 100%, 67%);
+            --orangey-yellow: hsl(39, 100%, 56%);
+            --green-teal: hsl(166, 100%, 37%);
+            --cobalt-blue: hsl(234, 85%, 45%);
+            --light-slate-blue: hsl(252, 100%, 67%);
+            --light-royal-blue: hsl(241, 81%, 54%);
+            --violet-blue: hsla(256, 72%, 46%, 1);
+            --persian-blue: hsla(241, 72%, 46%, 0);
+            --white: hsl(0, 0%, 100%);
+            --pale-blue: hsl(221, 100%, 96%);
+            --light-lavender: hsl(241, 100%, 89%);
+            --dark-gray-blue: hsl(224, 30%, 27%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: var(--pale-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-size: 18px;
+        }
+
+        .container {
+            display: flex;
+            background-color: var(--white);
+            border-radius: 32px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-width: 736px;
+            width: 100%;
+        }
+
+        .result {
+            background: linear-gradient(to bottom, var(--light-slate-blue), var(--light-royal-blue));
+            color: var(--light-lavender);
+            padding: 40px;
+            text-align: center;
+            border-radius: 32px;
+            flex: 1;
+        }
+
+        .result h2 {
+            margin-bottom: 35px;
+        }
+
+        .score-circle {
+            background: linear-gradient(to bottom, var(--violet-blue), var(--persian-blue));
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 35px;
+        }
+
+        .score-circle .score {
+            color: var(--white);
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .score-circle .total {
+            color: var(--light-lavender);
+            opacity: 0.5;
+        }
+
+        .result h3 {
+            color: var(--white);
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .result p {
+            opacity: 0.7;
+            max-width: 260px;
+            margin: 0 auto;
+        }
+
+        .summary {
+            padding: 40px;
+            flex: 1;
+        }
+
+        .summary h2 {
+            color: var(--dark-gray-blue);
+            margin-bottom: 28px;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+
+        .summary-item:last-child {
+            margin-bottom: 35px;
+        }
+
+        .summary-item .icon {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .summary-item .category {
+            flex: 1;
+            font-weight: 700;
+        }
+
+        .summary-item .score {
+            color: var(--dark-gray-blue);
+            font-weight: 700;
+        }
+
+        .summary-item .score span {
+            color: var(--dark-gray-blue);
+            opacity: 0.5;
+        }
+
+        .continue-btn {
+            background-color: var(--dark-gray-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 128px;
+            padding: 17px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .continue-btn:hover,
+        .continue-btn:focus {
+            background: linear-gradient(to bottom, var(--light-slate-blue), var(--light-royal-blue));
+            outline: none;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--dark-gray-blue);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .result {
+                border-radius: 0 0 32px 32px;
+            }
+
+            .summary {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <section class="result">
+            <h2>Your Result</h2>
+            <div class="score-circle">
+                <span class="score">76</span>
+                <span class="total">of 100</span>
+            </div>
+            <h3>Great</h3>
+            <p>You scored higher than 65% of the people who have taken these tests.</p>
+        </section>
+        <section class="summary">
+            <h2>Summary</h2>
+            <div id="summary-items"></div>
+            <button class="continue-btn">Continue</button>
+        </section>
+    </main>
+    <footer>
+        <p>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/Hackerbot24">Hackerbot24</a>.</p>
+    </footer>
+
+    <script>
+        const summaryItemsContainer = document.getElementById('summary-items');
+
+        const data = [
+            {
+                "category": "Reaction",
+                "score": 80,
+                "icon": "./assets/images/icon-reaction.svg"
+            },
+            {
+                "category": "Memory",
+                "score": 92,
+                "icon": "./assets/images/icon-memory.svg"
+            },
+            {
+                "category": "Verbal",
+                "score": 61,
+                "icon": "./assets/images/icon-verbal.svg"
+            },
+            {
+                "category": "Visual",
+                "score": 72,
+                "icon": "./assets/images/icon-visual.svg"
+            }
+        ];
+
+        function createSummaryItem(item) {
+            const div = document.createElement('div');
+            div.className = `summary-item ${item.category.toLowerCase()}`;
+            div.style.backgroundColor = `${getCategoryColor(item.category, 0.1)}`;
+            
+            div.innerHTML = `
+                <img class="icon" src="${item.icon}" alt="${item.category} icon">
+                <span class="category" style="color: ${getCategoryColor(item.category)}">${item.category}</span>
+                <span class="score">${item.score} <span>/ 100</span></span>
+            `;
+            
+            return div;
+        }
+
+        function getCategoryColor(category, alpha = 1) {
+            const colors = {
+                Reaction: `hsla(0, 100%, 67%, ${alpha})`,
+                Memory: `hsla(39, 100%, 56%, ${alpha})`,
+                Verbal: `hsla(166, 100%, 37%, ${alpha})`,
+                Visual: `hsla(234, 85%, 45%, ${alpha})`
+            };
+            return colors[category] || `hsla(0, 0%, 0%, ${alpha})`;
+        }
+
+        function populateSummaryItems() {
+            data.forEach(item => {
+                const summaryItem = createSummaryItem(item);
+                summaryItemsContainer.appendChild(summaryItem);
+            });
+        }
+
+        populateSummaryItems();
+    </script>
+</body>
+</html>
